@@ -1,31 +1,55 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, TextInput, Button, FlatList } from 'react-native';
 
-export default function App() {
-  return (
-    <View>
-      <View style={{
-        width: 50, height: 50, backgroundColor: 'powderblue'
-      }} />
-      <View style={{
-        width: 100, height: 100, backgroundColor: 'skyblue'
-      }} />
-      <View style={{
-        width: 150, height: 150, backgroundColor: 'steelblue'
-      }} />
-    </View>
-  );
+export default class App extends Component {
+  _onPressButton() {
+    alert('You tapped the button!')
+  }
+
+  render(){
+    return (
+      <View style={styles.container}>
+          <View style={styles.buttonContainer}>
+            <Button
+              onPress={this._onPressButton}
+              title="Press Me"
+            />
+          </View>
+          <View style={styles.buttonContainer}>
+            <Button
+              onPress={this._onPressButton}
+              title="Press Me"
+              color="#841584"
+            />
+          </View>
+          <View style={styles.alternativeLayoutButtonContainer}>
+            <Button
+              onPress={this._onPressButton}
+              title="This looks great!"
+            />
+            <Button
+              onPress={this._onPressButton}
+              title="OK!"
+              color="#841584"
+            />
+          </View>
+        </View>
+    );
+  }  
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 22
+    justifyContent: 'center',
    },
-   item: {
-     padding: 10,
-     fontSize: 18,
-     height: 44,
+   buttonContainer: {
+     margin: 20
    },
+   alternativeLayoutButtonContainer: {
+     margin: 20,
+     flexDirection: 'row',
+     justifyContent: 'space-between'
+   }
 });
