@@ -4,22 +4,16 @@ import { StyleSheet, Text, View, Image, ScrollView, TextInput, Button, FlatList 
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={[
-          {key: 'Devin'},
-          {key: 'Dan'},
-          {key: 'Dominic'},
-          {key: 'Jackson'},
-          {key: 'James'},
-          {key: 'Joel'},
-          {key: 'John'},
-          {key: 'Jillian'},
-          {key: 'Jimmy'},
-          {key: 'Julie'},
-        ]}
-        renderItem = {({item}) => <Text style={styles.item}>{item.key}</Text>}
-      />
+    <View>
+      <View style={{
+        width: 50, height: 50, backgroundColor: 'powderblue'
+      }} />
+      <View style={{
+        width: 100, height: 100, backgroundColor: 'skyblue'
+      }} />
+      <View style={{
+        width: 150, height: 150, backgroundColor: 'steelblue'
+      }} />
     </View>
   );
 }
