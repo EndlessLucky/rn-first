@@ -1,43 +1,40 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, TextInput, Button, FlatList } from 'react-native';
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-export default class App extends Component {
-  _onPressButton() {
-    alert('You tapped the button!')
-  }
+const Stack = createStackNavigator();
 
-  render(){
-    return (
-      <View style={styles.container}>
-          <View style={styles.buttonContainer}>
-            <Button
-              onPress={this._onPressButton}
-              title="Press Me"
-            />
-          </View>
-          <View style={styles.buttonContainer}>
-            <Button
-              onPress={this._onPressButton}
-              title="Press Me"
-              color="#841584"
-            />
-          </View>
-          <View style={styles.alternativeLayoutButtonContainer}>
-            <Button
-              onPress={this._onPressButton}
-              title="This looks great!"
-            />
-            <Button
-              onPress={this._onPressButton}
-              title="OK!"
-              color="#841584"
-            />
-          </View>
-        </View>
-    );
-  }  
-}
+const App = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ title: 'Welcome' }}
+        />
+        <Stack.Screen name="Profile" component={ProfileScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
+const HomeScreen = ({ navigation }) => {
+  return (
+    <Button
+      title="Go to Jane's profile"
+      onPress={() =>
+        navigation.navigate('Profile', { name: 'Jane' })
+      }
+    />
+  );
+};
+const ProfileScreen = ({ navigation, route }) => {
+  return <Text>This is {route.params.name}'s profile</Text>;
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -53,3 +50,5 @@ const styles = StyleSheet.create({
      justifyContent: 'space-between'
    }
 });
+
+export default App;
